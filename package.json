@@ -9,9 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@types/busboy": "^1.5.4",
+    "@types/ssh2-sftp-client": "^9.0.6",
+    "busboy": "^1.6.0",
     "next": "16.2.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "ssh2-sftp-client": "^12.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
