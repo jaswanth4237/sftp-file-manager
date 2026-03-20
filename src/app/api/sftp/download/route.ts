@@ -20,22 +20,6 @@ export async function GET(req: NextRequest) {
         if (!stats.isFile) { // isFile is a property, not a function
             return NextResponse.json({ error: "Not a file" }, { status: 400 });
         }
-
-        // Use sftp.get with a stream
-        // According to ssh2-sftp-client docs, get(path, dst, options) 
-        // If dst is undefined, it returns a Promise<Buffer>. 
-        // We want a stream. We can use sftp.get(path, undefined) then stream it? 
-        // No, Buffer would load everything.
-        // Instead, use lower-level ssh2 if needed or check if sftp.get can return a stream.
-        // Actually, sftp.get(path, undefined) returns buffer.
-        // But ssh2-sftp-client has sftp.get(path, writeStream)
-        // We want a readable stream from SFTP.
-        // Let's use sftp.createReadStream() if available? 
-        // ssh2-sftp-client does not have createReadStream directly in its public API, 
-        // but we can access the underlying sftp object if needed.
-        // Wait, check sftp-client source or docs.
-        // Standard ssh2-sftp-client get(path, dst) if dst is a stream, it pipes to it.
-
     // Use PassThrough to bridge ssh2-sftp-client to Web Stream
     const pass = new (require('stream').PassThrough)();
     console.log("Download: PassThrough bridge created for", cleanPath);
